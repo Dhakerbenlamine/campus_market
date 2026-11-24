@@ -1,21 +1,5 @@
-Read 
-Completed with input: {
-  "path": "C:\\Users\\USER\\Desktop\\Atelier5\\campusmarket-frontend\\README.md"
-}
 
-Read 
-Completed with input: {
-  "path": "C:\\Users\\USER\\Desktop\\Atelier5\\campusmarket-frontend\\package.json"
-}
 
-Read 
-Completed with input: {
-  "path": "C:\\Users\\USER\\Desktop\\Atelier5\\backend\\package.json"
-}
-
-Voici un texte complet, prêt à coller dans le fichier `README.md` :
-
-```markdown
 # CampusMarket
 
 CampusMarket est une application web permettant aux étudiants d'une université de publier, rechercher et consulter des annonces de vente. Les utilisateurs peuvent vendre des livres, du matériel informatique, des vêtements et divers accessoires.
