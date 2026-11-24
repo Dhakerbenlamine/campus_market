@@ -1,0 +1,100 @@
+<section class="details-page">
+<div class="details-container">
+<!-- Retour aux annonces -->
+<a routerLink="/" class="back-link">
+<span>←</span>
+Retour aux annonces
+</a>
+<!-- Chargement -->
+<div *ngIf="loading" class="state-message">
+<span class="loader"></span>
+<p>Chargement des détails...</p>
+</div>
+<!-- Message d'erreur -->
+<div *ngIf="!loading && errorMessage" class="empty-state">
+<div class="empty-icon">��</div>
+<h2>Annonce indisponible</h2>
+<p>{{ errorMessage }}</p>
+<a routerLink="/" class="btn btn-primary">
+Retour à l'accueil
+</a>
+</div>
+<!-- Carte des détails -->
+<article class="details-card" *ngIf="!loading && annonce">
+<!-- Image -->
+<div class="details-image">
+<img
+[src]="annonce.image"
+[alt]="annonce.titre"
+(error)="imageErreur($event)"
+>
+<span
+class="condition"
+[class.new-condition]="annonce.etat === 'Neuf'"
+>
+{{ annonce.etat }}
+</span>
+</div>
+<!-- Informations -->
+<div class="details-content">
+<!-- Catégorie -->
+<span class="category-label">
+{{ annonce.categorie }}
+</span>
+<!-- Titre -->
+<h1>{{ annonce.titre }}</h1>
+<!-- Prix -->
+<div class="details-price">
+{{ annonce.prix | number:'1.0-2' }}
+<span>DT</span>
+</div>
+<div class="detail-divider"></div>
+<!-- Description -->
+<div class="description-section">
+<h2>Description</h2>
+<p class="description-text">
+{{ annonce.description }}
+</p>
+</div>
+<!-- Vendeur -->
+<div class="seller-section">
+<h2>Informations du vendeur</h2>
+<div class="seller-box">
+<div class="seller-avatar">
+{{ annonce.vendeur.charAt(0).toUpperCase() }}
+</div>
+<div class="seller-info">
+<small>Vendeur</small>
+<strong>{{ annonce.vendeur }}</strong>
+<a [href]="'tel:' + annonce.telephone">
+{{ annonce.telephone }}
+</a>
+</div>
+<a
+class="btn btn-primary contact-btn"
+[href]="'tel:' + annonce.telephone"
+>
+☎ Contacter
+</a>
+</div>
+</div>
+<!-- Boutons d'action -->
+<div class="details-actions">
+<a routerLink="/" class="btn btn-cancel">
+Retour
+</a>
+<a
+[routerLink]="['/modifier', annonce._id]"
+class="btn btn-primary"
+>
+Modifier l'annonce
+</a>
+</div>
+<!-- Petit message -->
+<div class="details-footer">
+��️ Une bonne affaire entre étudiants !
+</div>
+</div>
+</article>
+</div>
+</section>

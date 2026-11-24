@@ -1,0 +1,426 @@
+<section class="form-page">
+<div class="form-container">
+<!-- Retour à l'accueil -->
+<a routerLink="/" class="back-link">
+<span>←</span> Retour aux annonces
+</a>
+<!-- Chargement -->
+<div *ngIf="loading" class="state-message">
+<span class="loader"></span>
+<p>Chargement de l'annonce...</p>
+</div>
+<!-- Formulaire -->
+<div class="form-layout" *ngIf="!loading">
+<!-- ================================= -->
+<!-- PARTIE GAUCHE : PRESENTATION -->
+<!-- ================================= -->
+<aside class="form-intro">
+<div class="intro-badge">
+<span>✦</span>
+CampusMarket
+</div>
+<h1>
+{{ id ? 'Modifie ton annonce.' : 'Vends ce que tu n’utilises plus.'
+}}
+</h1>
+<p>
+Donne une seconde vie à tes objets et trouve facilement
+des acheteurs parmi les étudiants.
+</p>
+<div class="intro-features">
+<div class="feature-item">
+<span class="feature-icon">��</span>
+<div>
+<strong>Présente ton produit</strong>
+<small>Ajoute une photo et une description claire.</small>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-icon">��</span>
+<div>
+<strong>Fixe ton prix</strong>
+<small>Propose un prix adapté à ton produit.</small>
+</div>
+</div>
+<div class="feature-item">
+<span class="feature-icon">��</span>
+<div>
+<strong>Contacte les étudiants</strong>
+<small>Facilite les échanges entre étudiants.</small>
+</div>
+</div>
+</div>
+<div class="intro-note">
+<span>��</span>
+<p>
+Une bonne description et une belle photo augmentent
+tes chances de vendre rapidement !
+</p>
+</div>
+</aside>
+<!-- ================================= -->
+<!-- PARTIE DROITE : FORMULAIRE -->
+<!-- ================================= -->
+<div class="form-content">
+<div class="form-header">
+<div>
+<span class="form-eyebrow">
+{{ id ? 'MODIFICATION' : 'NOUVELLE PUBLICATION' }}
+</span>
+<h2>
+{{ id ? 'Modifier mon annonce' : 'Créer une annonce' }}
+</h2>
+<p>
+Remplis les informations ci-dessous.
+</p>
+</div>
+<div class="form-icon">
+{{ id ? '✏️' : '��️' }}
+</div>
+</div>
+<!-- ================================= -->
+<!-- FORMULAIRE -->
+<!-- ================================= -->
+<form
+#annonceForm="ngForm"
+(ngSubmit)="enregistrer(annonceForm.valid ?? false)"
+novalidate
+>
+<!-- ================================= -->
+<!-- SECTION 01 : PRODUIT -->
+<!-- ================================= -->
+<div class="form-section">
+<div class="section-heading">
+<span class="section-number">01</span>
+<div>
+<h3>Informations du produit</h3>
+<p>Présente ton article aux autres étudiants.</p>
+</div>
+</div>
+<!-- TITRE -->
+<div class="form-group">
+<label for="titre">
+Titre de l'annonce <span>*</span>
+</label>
+<input
+type="text"
+id="titre"
+name="titre"
+[(ngModel)]="annonce.titre"
+#titre="ngModel"
+placeholder="Ex : Ordinateur HP Pavilion"
+required
+minlength="3"
+maxlength="100"
+[class.input-error]="titre.invalid && (titre.touched ||
+submitted)"
+>
+<small
+class="error-message"
+*ngIf="titre.errors?.['required'] && (titre.touched ||
+submitted)"
+>
+Le titre est obligatoire.
+</small>
+<small
+class="error-message"
+*ngIf="titre.errors?.['minlength'] && (titre.touched ||
+submitted)"
+>
+Le titre doit contenir au moins 3 caractères.
+</small>
+<small
+class="error-message"
+*ngIf="titre.errors?.['maxlength'] && (titre.touched ||
+submitted)"
+>
+Le titre ne doit pas dépasser 100 caractères.
+</small>
+</div>
+<!-- DESCRIPTION -->
+<div class="form-group">
+<label for="description">
+Description <span>*</span>
+</label>
+<textarea
+id="description"
+name="description"
+[(ngModel)]="annonce.description"
+#description="ngModel"
+rows="5"
+placeholder="Décris ton produit et ses caractéristiques..."
+required
+minlength="10"
+[class.input-error]="description.invalid &&
+(description.touched || submitted)"
+></textarea>
+<small
+class="error-message"
+*ngIf="description.errors?.['required'] &&
+(description.touched || submitted)"
+>
+La description est obligatoire.
+</small>
+<small
+class="error-message"
+*ngIf="description.errors?.['minlength'] &&
+(description.touched || submitted)"
+>
+La description doit contenir au moins 10 caractères.
+</small>
+</div>
+<!-- PRIX ET CATEGORIE -->
+<div class="form-row">
+<!-- PRIX -->
+<div class="form-group">
+<label for="prix">
+Prix (DT) <span>*</span>
+</label>
+<div class="input-with-suffix">
+<input
+type="number"
+id="prix"
+name="prix"
+[(ngModel)]="annonce.prix"
+#prix="ngModel"
+placeholder="0"
+required
+min="0.01"
+step="0.01"
+[class.input-error]="prix.invalid && (prix.touched ||
+submitted)"
+>
+<span>DT</span>
+</div>
+<small
+class="error-message"
+*ngIf="prix.errors?.['required'] && (prix.touched ||
+submitted)"
+>
+Le prix est obligatoire.
+</small>
+<small
+class="error-message"
+*ngIf="prix.errors?.['min'] && (prix.touched || submitted)"
+>
+Le prix doit être supérieur à 0 DT.
+</small>
+</div>
+<!-- CATEGORIE -->
+<div class="form-group">
+<label for="categorie">
+Catégorie <span>*</span>
+</label>
+<select
+id="categorie"
+name="categorie"
+[(ngModel)]="annonce.categorie"
+#categorie="ngModel"
+required
+[class.input-error]="categorie.invalid && (categorie.touched
+|| submitted)"
+>
+<option value="" disabled>
+Choisir une catégorie
+</option>
+<option
+*ngFor="let cat of categories"
+[value]="cat"
+>
+{{ cat }}
+</option>
+</select>
+<small
+class="error-message"
+*ngIf="categorie.errors?.['required'] && (categorie.touched
+|| submitted)"
+>
+Veuillez choisir une catégorie.
+</small>
+</div>
+</div>
+<!-- ETAT -->
+<div class="form-group">
+<label for="etat">
+État du produit <span>*</span>
+</label>
+<select
+id="etat"
+name="etat"
+[(ngModel)]="annonce.etat"
+#etat="ngModel"
+required
+[class.input-error]="etat.invalid && (etat.touched ||
+submitted)"
+>
+<option value="Neuf">Neuf</option>
+<option value="Occasion">Occasion</option>
+</select>
+<small
+class="error-message"
+*ngIf="etat.errors?.['required'] && (etat.touched ||
+submitted)"
+>
+Veuillez sélectionner l'état du produit.
+</small>
+</div>
+</div>
+<!-- ================================= -->
+<!-- SECTION 02 : IMAGE -->
+<!-- ================================= -->
+<div class="form-section">
+<div class="section-heading">
+<span class="section-number">02</span>
+<div>
+<h3>Photo du produit</h3>
+<p>Ajoute une image pour attirer les acheteurs.</p>
+</div>
+</div>
+<div class="form-group">
+<label for="image">
+URL de l'image
+</label>
+<input
+type="url"
+id="image"
+name="image"
+[(ngModel)]="annonce.image"
+#image="ngModel"
+placeholder="https://exemple.com/image.jpg"
+[class.input-error]="image.invalid && (image.touched ||
+submitted)"
+>
+<small class="field-hint">
+Colle le lien direct d'une image accessible sur Internet.
+Ce champ est facultatif.
+</small>
+<small
+class="error-message"
+*ngIf="image.invalid && (image.touched || submitted)"
+>
+L'adresse de l'image doit être une URL valide.
+</small>
+</div>
+<!-- APERCU IMAGE -->
+<div
+class="image-preview"
+*ngIf="annonce.image"
+>
+<img
+[src]="annonce.image"
+alt="Aperçu du produit"
+(error)="annonce.image = ''"
+>
+</div>
+</div>
+<!-- ================================= -->
+<!-- SECTION 03 : VENDEUR -->
+<!-- ================================= -->
+<div class="form-section">
+<div class="section-heading">
+<span class="section-number">03</span>
+<div>
+<h3>Informations du vendeur</h3>
+<p>Permets aux acheteurs de te contacter.</p>
+</div>
+</div>
+<!-- NOM VENDEUR -->
+<div class="form-group">
+<label for="vendeur">
+Nom du vendeur <span>*</span>
+</label>
+<input
+type="text"
+id="vendeur"
+name="vendeur"
+[(ngModel)]="annonce.vendeur"
+#vendeur="ngModel"
+placeholder="Ex : Ahmed Ben Ali"
+required
+minlength="3"
+[class.input-error]="vendeur.invalid && (vendeur.touched ||
+submitted)"
+>
+<small
+class="error-message"
+*ngIf="vendeur.errors?.['required'] && (vendeur.touched ||
+submitted)"
+>
+Le nom du vendeur est obligatoire.
+</small>
+<small
+class="error-message"
+*ngIf="vendeur.errors?.['minlength'] && (vendeur.touched ||
+submitted)"
+>
+Le nom doit contenir au moins 3 caractères.
+</small>
+</div>
+<!-- TELEPHONE -->
+<div class="form-group">
+<label for="telephone">
+Numéro de téléphone <span>*</span>
+</label>
+<input
+type="tel"
+id="telephone"
+name="telephone"
+[(ngModel)]="annonce.telephone"
+#telephone="ngModel"
+placeholder="Ex : 20 123 456"
+required
+pattern="[0-9 +()-]{8,20}"
+[class.input-error]="telephone.invalid && (telephone.touched
+|| submitted)"
+>
+<small
+class="error-message"
+*ngIf="telephone.errors?.['required'] && (telephone.touched ||
+submitted)"
+>
+Le numéro de téléphone est obligatoire.
+</small>
+<small
+class="error-message"
+*ngIf="telephone.errors?.['pattern'] && (telephone.touched ||
+submitted)"
+>
+Le numéro doit contenir entre 8 et 20 caractères numériques ou
+séparateurs autorisés.
+</small>
+</div>
+</div>
+<!-- ================================= -->
+<!-- BOUTONS -->
+<!-- ================================= -->
+<div class="form-actions">
+<a
+routerLink="/"
+class="btn btn-cancel"
+>
+Annuler
+</a>
+<button
+type="submit"
+class="btn btn-primary"
+[disabled]="submitting"
+>
+<span *ngIf="!submitting">
+{{ id ? 'Enregistrer les modifications' : 'Publier mon
+annonce' }}
+</span>
+<span *ngIf="submitting">
+Enregistrement en cours...
+</span>
+<span *ngIf="!submitting">→</span>
+</button>
+</div>
+<p class="required-note">
+<span>*</span> Champs obligatoires
+</p>
+</form>
+</div>
+</div>
+</div>
+</section>
+

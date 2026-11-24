@@ -1,0 +1,33 @@
+<header class="navbar">
+<div class="nav-container">
+<!-- Logo -->
+<a class="brand" routerLink="/" aria-label="CampusMarket accueil">
+<span class="brand-icon">
+C
+</span>
+<span class="brand-text">
+<span class="brand-name">
+Campus<span>Market</span>
+</span>
+<small>Le marché étudiant</small>
+</span>
+</a>
+<!-- Navigation -->
+<nav class="nav-links">
+<a
+routerLink="/"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+class="nav-link">
+Accueil
+</a>
+<a
+routerLink="/ajouter"
+routerLinkActive="publish-active"
+class="publish-btn">
+<span class="plus-icon">+</span>
+Publier une annonce
+</a>
+</nav>
+</div>
+</header>

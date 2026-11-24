@@ -1,0 +1,235 @@
+<main class="home-page">
+<!-- HERO SECTION -->
+<section class="hero">
+<div class="hero-decoration decoration-one"></div>
+<div class="hero-decoration decoration-two"></div>
+<div class="hero-content">
+<span class="hero-badge">
+✨ LA MARKETPLACE DES ÉTUDIANTS
+</span>
+<h1>
+Donnez une seconde vie<br>
+à vos <span>objets préférés.</span>
+</h1>
+<p class="hero-description">
+Achetez, vendez et échangez facilement avec les étudiants
+de votre campus. Les bonnes affaires commencent ici !
+</p>
+<!-- SEARCH BAR -->
+<div class="search-box">
+<span class="search-icon">⌕</span>
+<input
+type="text"
+placeholder="Que recherchez-vous aujourd'hui ?"
+[(ngModel)]="recherche"
+(input)="filtrerAnnonces()"
+aria-label="Rechercher une annonce">
+<button
+type="button"
+class="search-button"
+(click)="filtrerAnnonces()">
+Rechercher
+</button>
+</div>
+<div class="hero-footer">
+<span>✓ Simple et rapide</span>
+<span>✓ Entre étudiants</span>
+<span>✓ Bonnes affaires</span>
+</div>
+</div>
+</section>
+<!-- MAIN CONTENT -->
+<section class="marketplace-section">
+  <!-- SECTION INTRO -->
+   <div class="section-heading">
+<div>
+<span class="section-subtitle">EXPLOREZ LE CAMPUS</span>
+<h2>Découvrez nos annonces</h2>
+<p>Tout ce dont vous avez besoin, au même endroit.</p>
+</div>
+<a routerLink="/ajouter" class="add-annonce-btn">
+<span>＋</span> Publier une annonce
+</a>
+</div>
+<!-- CATEGORIES -->
+<div class="categories-section">
+<div class="category-heading">
+<h3>Explorer par catégorie</h3>
+<button
+type="button"
+class="reset-filter"
+(click)="categorie = ''; filtrerAnnonces()">
+Voir toutes
+</button>
+</div>
+<div class="categories-list">
+<button
+type="button"
+class="category-item"
+[class.selected]="categorie === ''"
+(click)="categorie = ''; filtrerAnnonces()">
+<span class="category-icon all-icon">✦</span>
+<span>Toutes</span>
+</button>
+<button
+type="button"
+class="category-item"
+[class.selected]="categorie === 'Livres'"
+(click)="categorie = 'Livres'; filtrerAnnonces()">
+<span class="category-icon books-icon">��</span>
+<span>Livres</span>
+</button>
+<button
+type="button"
+class="category-item"
+[class.selected]="categorie === 'Informatique'"
+(click)="categorie = 'Informatique'; filtrerAnnonces()">
+<span class="category-icon computer-icon">��</span>
+<span>Informatique</span>
+</button>
+<button
+type="button"
+class="category-item"
+[class.selected]="categorie === 'Vêtements'"
+(click)="categorie = 'Vêtements'; filtrerAnnonces()">
+<span class="category-icon clothes-icon">��</span>
+<span>Vêtements</span>
+</button>
+<button
+type="button"
+class="category-item"
+[class.selected]="categorie === 'Accessoires'"
+(click)="categorie = 'Accessoires'; filtrerAnnonces()">
+<span class="category-icon accessories-icon">��</span>
+<span>Accessoires</span>
+</button>
+</div>
+</div>
+<!-- PRODUCTS SECTION -->
+<div class="products-section">
+<div class="products-heading">
+<div>
+<span class="section-subtitle">LES BONNES AFFAIRES</span>
+<h2>Les dernières annonces</h2>
+</div>
+<div class="products-count">
+<span>{{ annoncesFiltrees.length }}</span>
+annonce(s) trouvée(s)
+</div>
+</div>
+<!-- FILTERS -->
+<div class="filters-bar">
+<div class="filter-search">
+<span>⌕</span>
+<input
+type="text"
+placeholder="Rechercher un produit..."
+[(ngModel)]="recherche"
+(input)="filtrerAnnonces()">
+</div>
+<div class="filter-category">
+<select
+[(ngModel)]="categorie"
+(change)="filtrerAnnonces()">
+<option value="">Toutes les catégories</option>
+<option value="Livres">Livres</option>
+<option value="Informatique">Informatique</option>
+<option value="Vêtements">Vêtements</option>
+<option value="Accessoires">Accessoires</option>
+</select>
+</div>
+</div>
+<!-- PRODUCT GRID -->
+<div class="products-grid" *ngIf="annoncesFiltrees.length > 0">
+<article
+class="product-card"
+*ngFor="let a of annoncesFiltrees">
+<!-- PRODUCT IMAGE -->
+<div class="product-image-container">
+<img
+[src]="a.image"
+[alt]="a.titre"
+class="product-image">
+<span class="product-condition"
+[class.condition-new]="a.etat === 'Neuf'">
+{{ a.etat }}
+</span>
+<span class="product-category">
+{{ a.categorie }}
+</span>
+</div>
+<!-- PRODUCT INFORMATION -->
+<div class="product-info">
+<h3>{{ a.titre }}</h3>
+<div class="product-price">
+{{ a.prix | number:'1.0-2' }}
+<span>DT</span>
+</div>
+<div class="product-seller">
+<span class="seller-avatar">
+{{ a.vendeur.charAt(0).toUpperCase() }}
+</span>
+<span>
+Proposé par
+<strong>{{ a.vendeur }}</strong>
+</span>
+</div>
+<!-- ACTIONS -->
+<div class="product-actions">
+<a
+[routerLink]="['/annonce', a._id]"
+class="details-btn">
+Voir détails
+<span>→</span>
+</a>
+<div class="management-actions">
+<a
+[routerLink]="['/modifier', a._id]"
+class="edit-btn"
+title="Modifier l'annonce"
+aria-label="Modifier l'annonce">
+✎
+</a>
+<button
+type="button"
+class="delete-btn"
+title="Supprimer l'annonce"
+aria-label="Supprimer l'annonce"
+(click)="supprimer(a._id!)">
+♲
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- EMPTY STATE -->
+<div class="empty-state" *ngIf="annoncesFiltrees.length === 0">
+<div class="empty-icon">��</div>
+<h3>Aucune annonce trouvée</h3>
+<p>
+Nous n'avons trouvé aucun produit correspondant à votre recherche.
+Essayez un autre mot-clé ou une autre catégorie.
+</p>
+<button
+type="button"
+(click)="recherche = ''; categorie = ''; filtrerAnnonces()">
+Réinitialiser les filtres
+</button>
+</div>
+</div>
+</section>
+<!-- BOTTOM CALL TO ACTION -->
+<section class="bottom-banner">
+<div>
+<span class="banner-label">UNE BONNE AFFAIRE À PARTAGER ?</span>
+<h2>Votre prochain acheteur est peut-être sur votre campus !</h2>
+<p>Publiez gratuitement votre annonce et trouvez rapidement un
+acheteur.</p>
+</div>
+<a routerLink="/ajouter" class="banner-button">
+Publier maintenant <span>→</span>
+</a>
+</section>
+</main>
+

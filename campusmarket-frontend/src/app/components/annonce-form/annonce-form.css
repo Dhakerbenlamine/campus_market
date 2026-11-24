@@ -1,0 +1,691 @@
+/* =====================================
+   CAMPUSMARKET - FORM PAGE
+===================================== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f8f8fc;
+}
+
+.form-page {
+  padding: 35px 0 70px;
+}
+
+.form-container {
+
+    width: 92%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* BACK LINK */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+    margin-bottom: 25px;
+
+    color: #77748e;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #6846d7;
+}
+
+.back-link span {
+  font-size: 19px;
+}
+
+/* =====================================
+   FORM LAYOUT
+===================================== */
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+
+    background: #ffffff;
+    border: 1px solid #eeedf5;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 12px 40px rgba(40, 30, 80, 0.055);
+}
+
+/* =====================================
+   LEFT INTRO PANEL
+===================================== */
+
+.form-intro {
+  position: relative;
+  overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 40px 30px;
+
+    background: linear-gradient(
+      150deg,
+      #302078 0%,
+      #5638c9 60%,
+      #8266ed 100%
+    );
+
+    color: #ffffff;
+}
+
+.form-intro::before {
+  content: "";
+  position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+
+    top: -100px;
+    right: -150px;
+}
+
+.form-intro::after {
+  content: "";
+  position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+
+    bottom: 80px;
+    left: -150px;
+}
+
+.intro-content,
+.intro-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+    color: #ded4ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c8ffdf;
+}
+
+.form-intro h1 {
+  margin: 30px 0 16px;
+
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -1px;
+}
+
+.intro-description {
+  color: #e5dffc;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* Illustration */
+
+.intro-illustration {
+  position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 190px;
+    margin: 15px 0;
+}
+
+.illustration-circle {
+  width: 135px;
+  height: 135px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+
+    box-shadow: 0 15px 35px rgba(20,10,60,0.15);
+}
+
+.illustration-circle span {
+  font-size: 68px;
+}
+
+.illustration-small {
+  position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 37px;
+    height: 37px;
+
+    border-radius: 12px;
+    background: #ffffff;
+    color: #6846d7;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.small-one {
+  top: 20px;
+  right: 35px;
+}
+
+.small-two {
+  bottom: 20px;
+  left: 40px;
+
+}
+
+/* Tips */
+
+.form-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+    padding: 17px;
+
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 13px;
+}
+
+.tip-icon {
+  font-size: 23px;
+}
+
+.form-tip strong {
+  font-size: 12px;
+}
+
+.form-tip p {
+  margin: 6px 0 0;
+
+    color: #e8e1ff;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.intro-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+    margin-top: 35px;
+
+    color: #e4dcff;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* =====================================
+   RIGHT FORM CONTENT
+===================================== */
+
+.form-content {
+
+    padding: 40px 45px;
+    min-width: 0;
+}
+
+.form-header {
+  margin-bottom: 35px;
+}
+
+.form-step-label {
+  color: #8065dc;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.form-header h2 {
+  margin: 10px 0 8px;
+
+    color: #27243e;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.form-header p {
+  margin: 0;
+  color: #9693a5;
+  font-size: 12px;
+}
+
+/* =====================================
+   SECTION TITLES
+===================================== */
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+    margin-bottom: 23px;
+}
+
+.step-number {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eee9ff;
+    color: #6846d7;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.form-section-title h3 {
+  margin: 0 0 5px;
+
+    color: #302d45;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.form-section-title p {
+  margin: 0;
+  color: #9b98a9;
+  font-size: 11px;
+}
+
+.section-spacing {
+  margin-top: 35px;
+}
+
+/* =====================================
+   INPUTS
+===================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+    margin-bottom: 20px;
+    min-width: 0;
+}
+
+.field label {
+  color: #454157;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field label em,
+.required-note em {
+
+    color: #e65d6c;
+    font-style: normal;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #e8e6ef;
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fbfaff;
+    color: #343148;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    transition: all 0.2s ease;
+}
+
+.field input,
+.field select {
+  height: 46px;
+}
+
+.field textarea {
+  min-height: 105px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #aaa7b6;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  background: #ffffff;
+  border-color: #8065dc;
+  box-shadow: 0 0 0 3px rgba(104,70,215,0.09);
+}
+
+/* Price suffix */
+
+.input-with-suffix {
+  position: relative;
+}
+
+.input-with-suffix input {
+  padding-right: 45px;
+}
+
+.input-with-suffix span {
+  position: absolute;
+
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #6846d7;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* Rows */
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Validation */
+
+.validation {
+  color: #dc555f;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.field-hint {
+  color: #9693a5;
+  font-size: 10px;
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.form-actions {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 35px;
+    padding-top: 25px;
+
+    border-top: 1px solid #f0eef5;
+}
+
+.btn-cancel,
+.btn-submit {
+  min-height: 45px;
+  padding: 0 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.btn-cancel {
+  background: #f5f4f8;
+  color: #77748b;
+}
+
+.btn-cancel:hover {
+  background: #eae8f0;
+}
+
+.btn-submit {
+  border: none;
+
+    background: linear-gradient(135deg, #7355e8, #5638c9);
+    color: white;
+
+    cursor: pointer;
+    box-shadow: 0 5px 13px rgba(104,70,215,0.17);
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #4d30b8;
+  transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.required-note {
+  margin-top: 15px;
+
+    color: #a09dad;
+    font-size: 10px;
+    text-align: right;
+}
+
+/* =====================================
+   LOADING
+===================================== */
+
+.state-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+    min-height: 350px;
+
+    color: #77748e;
+    font-size: 13px;
+}
+
+.loader {
+  width: 35px;
+  height: 35px;
+
+    border: 3px solid #e9e3fb;
+    border-top-color: #6846d7;
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+
+    }
+}
+
+/* =====================================
+   RESPONSIVE TABLET
+===================================== */
+
+@media (max-width: 950px) {
+
+    .form-layout {
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .form-intro {
+      padding: 30px 22px;
+    }
+
+    .form-intro h1 {
+      font-size: 28px;
+    }
+
+    .form-content {
+      padding: 35px 28px;
+    }
+
+}
+
+/* =====================================
+   RESPONSIVE MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .form-page {
+      padding: 25px 0 45px;
+    }
+
+    .form-container {
+      width: 94%;
+    }
+
+    .form-layout {
+      grid-template-columns: 1fr;
+      border-radius: 15px;
+    }
+
+    .form-intro {
+      padding: 30px 25px;
+    }
+
+.form-intro h1 {
+  margin-top: 20px;
+  font-size: 29px;
+}
+
+.intro-illustration {
+  height: 120px;
+}
+
+.illustration-circle {
+  width: 95px;
+  height: 95px;
+}
+
+.illustration-circle span {
+  font-size: 48px;
+}
+
+.form-tip {
+  margin-top: 10px;
+}
+
+.intro-footer {
+  margin-top: 20px;
+}
+
+.form-content {
+  padding: 30px 22px;
+}
+
+.form-header h2 {
+  font-size: 23px;
+}
+
+.form-row {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.form-actions {
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+
+.btn-cancel,
+.btn-submit {
+  width: 100%;
+  box-sizing: border-box;
+
+    }
+
+}
+
+/* =====================================
+   MESSAGES D'ERREUR
+   IMPORTANT : EN DEHORS DU MEDIA QUERY
+===================================== */
+
+.form-content .form-group small.error-message {
+  display: block !important;
+  color: #e53935 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-top: 6px !important;
+  line-height: 1.5 !important;
+}
+
+/* Champs invalides */
+
+.form-content .form-group .input-error {
+  border: 1.5px solid #e53935 !important;
+  background-color: #fff8f8 !important;
+}
+
+/* Focus sur un champ invalide */
+
+.form-content .form-group .input-error:focus {
+  outline: none !important;
+  border-color: #e53935 !important;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.12) !important;
+}
